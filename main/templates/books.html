@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My_Book-Shop</title>
+    <link rel="stylesheet" href="{% static 'styles/books.model.css'%}"/>
+</head>
+<body>
+    <h1>Книжный магазин</h1>
+    <div class="books_container">
+    {% for books in books_list%}
+    <div class="books_item">
+        <div class="books_item_header">
+            <h3>{{ books.title }}</h3>
+            <p>Описание : {{books.description}}</p>
+        </div>
+        <p> Автор: {{books.author}}</p>
+        <div class="price-genre">
+            <p>жанр : {{ books.genre}}</p>
+            <p>{{books.price}} сом</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+    
+</body>
+</html>
