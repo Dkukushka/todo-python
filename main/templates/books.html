@@ -11,52 +11,63 @@
 
 <body>
     <section>
-    <h1>Книжный магазин</h1>
-    <div class="create-books_container">
-        <form action="{% url 'add-books' %}" method="POST">
-            {% csrf_token %} 
-            <div class="main-info">
-            <div class="title-block">
-                <input type="text" class="create_input" placeholder="Название книги" name="books_title" />
-                <input type="text" class="create_input" placeholder="Альтернативное название" name="books_subtitle" />
-            </div>
-            <div class="decription-block">
-                <input type="text" class="create_input" placeholder="Описание книги" name="books_description" />
-            </div></div>
-            <div class="info-block">
-                <input type="text" class="create_input" placeholder="Цена" name="books_price" />
-                <input type="text" class="create_input" placeholder="Жанр книги" name="books_genre" />
-                <input type="text" class="create_input" placeholder="Автор книги" name="books_author" />
-                <input type="text" class="create_input" placeholder="Год выхода книги : год-месяц-день" name="books_year" />
-            </div>
-            <button class="create_button">Добавить</button>
-        </form> 
-    </div>
-    <div class="books_container">
-        {% for books in books_list%}
-        <div class="books_item">
-            <div class="books_item_header">
-                <h3>{{ books.title }}</h3>
-                <h5>Другое название: {{books.subtitle}}</h5>
-                <p>Описание : {{books.description}}</p>
-            </div>
-            <p> Автор: {{books.author}}</p>
-            <p>Год выхода книги: {{books.year}}</p>
-            <div class="price-genre">
-                <p>жанр : {{ books.genre}}</p>
-                <p>{{books.price}} сом</p>
-            </div>
-            <div class="books_item_footer">
-                <p>{{books.date}}</p>
-                <div class="change_buttons">
-                    <a href=""></a><img src="../static/icons/star-50.png" width="25px" height="25px" alt="" /></a>
-                    <a href="{% url 'delete-books' books.id %}"><img src="../static/icons/delete50.png" width="25px" height="25px" alt="" /></a>
+        <h1>Книжный магазин</h1>
+        <div class="create-books_container">
+            <form action="{% url 'add-books' %}" method="POST">
+                {% csrf_token %}
+                <div class="main-info">
+                    <div class="title-block">
+                        <input type="text" class="create_input" placeholder="Название книги" name="books_title" />
+                        <input type="text" class="create_input" placeholder="Альтернативное название"
+                            name="books_subtitle" />
+                    </div>
+                    <div class="decription-block">
+                        <input type="text" class="create_input" placeholder="Описание книги" name="books_description" />
+                    </div>
+                </div>
+                <div class="info-block">
+                    <input type="text" class="create_input" placeholder="Цена" name="books_price" />
+                    <input type="text" class="create_input" placeholder="Жанр книги" name="books_genre" />
+                    <input type="text" class="create_input" placeholder="Автор книги" name="books_author" />
+                    <input type="text" class="create_input" placeholder="Год выхода книги : год-месяц-день"
+                        name="books_year" />
+                </div>
+                <button class="create_button">Добавить</button>
+            </form>
+        </div>
+        <div class="books_container">
+            {% for books in books_list%}
+            <div class="books_item
+                {% if books.is_favorite %}
+                           marked || books_item
+                {% endif %}
+            ">
+                <div class="books_item_header">
+                    <h3>{{ books.title }}</h3>
+                    <h5>Другое название: {{books.subtitle}}</h5>
+                    <p>Описание : {{books.description}}</p>
+                </div>
+                <p> Автор: {{books.author}}</p>
+                <p>Год выхода книги: {{books.year}}</p>
+                <div class="price-genre">
+                    <p>жанр : {{ books.genre}}</p>
+                    <p>{{books.price}} сом</p>
+                </div>
+                <div class="books_item_footer">
+                    <p>{{books.date}}</p>
+                    <div class="change_buttons">
+                        {% if books.is_favorite %}
+                        <a href="{% url 'unmark-books' books.id %}"><img src="../static/icons/star-48.png" /></a>
+                        {% else %}
+                        <a href="{% url 'mark-books' books.id %}"><img src="../static/icons/star-50.png" /></a>
+                        {% endif%}
+                        <a href="{% url 'delete-books' books.id %}"><img src="../static/icons/delete50.png" /></a>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-</section>
+    </section>
 </body>
 
 </html>

@@ -18,3 +18,4 @@ class BooksShop(models.Model):
     author = models.CharField(verbose_name ='Автор книги',max_length = 100)
     year = models.DateField(verbose_name='Год выхода книги')
     date = models.DateTimeField(auto_now_add = True)
+    is_favorite = models.BooleanField(default=False)

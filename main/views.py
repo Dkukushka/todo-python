@@ -57,3 +57,15 @@ def delete_books(request,id):
     book = BooksShop.objects.get(id=id)
     book.delete()
     return redirect(books)   
+
+def mark_books(request,id):
+    book = BooksShop.objects.get(id=id)
+    book.is_favorite = True
+    book.save()
+    return redirect(books)
+
+def unmark_books(request,id):
+    book = BooksShop.objects.get(id = id)
+    book.is_favorite = False
+    book.save()
+    return redirect(books)
