@@ -46,6 +46,13 @@
                 <p>жанр : {{ books.genre}}</p>
                 <p>{{books.price}} сом</p>
             </div>
+            <div class="books_item_footer">
+                <p>{{books.date}}</p>
+                <div class="change_buttons">
+                    <a href=""></a><img src="../static/icons/star-50.png" width="25px" height="25px" alt="" /></a>
+                    <a href="{% url 'delete-books' books.id %}"><img src="../static/icons/delete50.png" width="25px" height="25px" alt="" /></a>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>

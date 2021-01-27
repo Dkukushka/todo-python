@@ -103,3 +103,27 @@ h3{
     display: flex;
     flex-direction: row;
 }
+.books_item_footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px 5px 5px;
+}
+.books_item_footer p{
+    font-size: 15px;
+    font-family: sans-serif;
+}
+.change_buttons{
+    display: flex;
+    
+}
+.books_item_footer img{
+    width: 25px;
+    height: 25px;
+    margin: 0 6px;
+    cursor: pointer;
+}
+.books_item.marked{
+    background-color: #ffe082;
+    border: 2px solid #fad66a;
+}
