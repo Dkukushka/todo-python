@@ -37,9 +37,19 @@ def add_books(request):
      return redirect(books)
 
 def delete_todo(request,id):
-
      todo = ToDo.objects.get(id = id)
      todo.delete()
      return redirect(test)
 
+def mark_todo(request,id):
+     todo = ToDo.objects.get(id = id)
+     todo.is_favorite = True
+     todo.save()
+     return redirect(test)
+
+def unmark_todo(request,id):
+    todo = ToDo.objects.get(id = id)
+    todo.is_favorite = False
+    todo.save()
+    return redirect(test)
    

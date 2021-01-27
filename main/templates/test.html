@@ -17,18 +17,18 @@
         <div class="create_container">
             <form action="{% url 'add-todo' %}" method="POST">
                 {% csrf_token %}
-                <input type="text"
-                       class="create_input" 
-                       placeholder="Напишите сюда новую задачу"
-                       name = "todo_text"
-                 />
+                <input type="text" class="create_input" placeholder="Напишите сюда новую задачу" name="todo_text" />
                 <button class="create_button">Добавить</button>
             </form>
         </div>
 
         <div class="todo_container">
             {% for todo in todo_list%}
-            <div class="todo_item">
+            <div class="todo_item
+                    {% if todo.is_favorite %}
+                                marked || todo_item
+                           {% endif%}
+                ">
                 <div class="todo_item_header">
                     <label class="checkbox_container">
                         <input type="checkbox" />
@@ -39,8 +39,12 @@
                 <div class="todo_item_footer">
                     <p>{{ todo.created_at }}</p>
                     <div class="action_buttons">
-                        <img src="../static/icons/star-50.png" alt="" />
-                       <a href="{% url 'delete-todo' todo.id %}"><img src="../static/icons/delete50.png" alt="" /></a>
+                        {% if todo.is_favorite %}
+                        <a href="{% url 'unmark-todo' todo.id %}"><img src="../static/icons/star-48.png" alt="" /></a>
+                        {% else %}
+                        <a href="{% url 'mark-todo' todo.id %}"><img src="../static/icons/star-50.png" alt="" /></a>
+                        {% endif %}
+                        <a href="{% url 'delete-todo' todo.id %}"><img src="../static/icons/delete50.png" alt="" /></a>
                     </div>
                 </div>
             </div>
