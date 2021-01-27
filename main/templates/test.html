@@ -13,11 +13,6 @@
 </head>
 
 <body>
-    <!-- <h2>Это тестовая страница</h2>
-    <div>Версия вторая</div>
-    {% for todo in todo_list %}
-        <h4>{{ todo.text }} - {{todo.created_at}}</h4>
-    {% endfor %} -->
     <section>
         <div class="create_container">
             <form action="{% url 'add-todo' %}" method="POST">
@@ -45,7 +40,7 @@
                     <p>{{ todo.created_at }}</p>
                     <div class="action_buttons">
                         <img src="../static/icons/star-50.png" alt="" />
-                        <img src="../static/icons/delete50.png" alt="" />
+                       <a href="{% url 'delete-todo' todo.id %}"><img src="../static/icons/delete50.png" alt="" /></a>
                     </div>
                 </div>
             </div>
